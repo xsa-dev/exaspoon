@@ -5,6 +5,7 @@
 
 ## DemoUI
 - https://exaspoon2.cloudpub.ru/
+- [N8N Pack](./n8n_pack/HOWTO.md)
 
 ## Presentation
 - [slidev presentation](https://exaspoon-demo-slidev.cloudpub.ru/)
