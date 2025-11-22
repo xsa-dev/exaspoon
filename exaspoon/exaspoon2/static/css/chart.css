@@ -1,0 +1,374 @@
+/* ============================================
+   CHART SPECIFIC STYLES
+   ============================================ */
+
+/* Chart container */
+.chart-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+/* SVG chart styles */
+.chart-wrapper svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+/* Chart line */
+.chart-line {
+    fill: none;
+    stroke-width: 4 !important;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+    stroke: var(--chart-line, var(--color-line, var(--color-text-primary))) !important;
+    opacity: 1 !important;
+    stroke-opacity: 1 !important;
+    z-index: 10;
+    position: relative;
+}
+
+/* Chart grid lines */
+.grid-lines line {
+    stroke-dasharray: 2, 4;
+    opacity: 0.5;
+    shape-rendering: crispEdges;
+    stroke: var(--chart-grid, var(--color-bg-secondary));
+}
+
+/* Chart axes */
+.x-axis text,
+.y-axis text {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 400;
+    fill: var(--chart-text, var(--color-text-primary));
+}
+
+.x-axis .domain,
+.y-axis .domain {
+    stroke: var(--chart-text, var(--color-text-primary));
+    stroke-width: 1;
+}
+
+.x-axis .tick line,
+.y-axis .tick line {
+    stroke: var(--chart-text, var(--color-text-primary));
+    stroke-width: 1;
+}
+
+/* Zero line special styling */
+.zero-line-base {
+    stroke-width: 3;
+    stroke-linecap: round;
+    pointer-events: none;
+    filter: drop-shadow(0 0 8px var(--chart-zero-line, var(--color-text-primary)));
+    stroke: var(--chart-zero-line, var(--color-text-primary));
+}
+
+.zero-line-sheen {
+    stroke-width: 5;
+    stroke-linecap: round;
+    mix-blend-mode: screen;
+    pointer-events: none;
+    stroke: rgba(255, 255, 255, 0.8);
+}
+
+/* Chart points/circles */
+.chart-group circle {
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.chart-group circle:hover {
+    r: 6;
+    stroke-width: 2;
+    stroke: #fff;
+    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.8));
+}
+
+/* Quarter highlight labels */
+.quarter-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 600;
+    pointer-events: none;
+    text-anchor: middle;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Chart tooltip styles */
+.chart-tooltip {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: #fff;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--border-radius);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    pointer-events: none;
+    z-index: var(--z-overlay);
+    box-shadow: var(--shadow-medium);
+    max-width: 200px;
+}
+
+.chart-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: rgba(0, 0, 0, 0.9);
+}
+
+/* Chart loading state */
+.chart-loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: var(--z-overlay);
+}
+
+.chart-loading .loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s linear infinite;
+}
+
+/* Chart error state */
+.chart-error {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-family: var(--font-mono);
+    color: #f44336;
+    background-color: rgba(244, 67, 54, 0.1);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+    border: 1px solid #f44336;
+    max-width: 80%;
+}
+
+.chart-error h3 {
+    margin: 0 0 var(--spacing-md) 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.chart-error p {
+    margin: 0;
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+/* Chart empty state */
+.chart-empty {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-family: var(--font-mono);
+    opacity: 0.6;
+}
+
+.chart-empty .icon {
+    font-size: 48px;
+    margin-bottom: var(--spacing-md);
+    opacity: 0.5;
+}
+
+.chart-empty h3 {
+    margin: 0 0 var(--spacing-sm) 0;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.chart-empty p {
+    margin: 0;
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+/* Full-screen chart optimizations */
+#main-container.fullscreen-data .chart-wrapper {
+    min-height: calc(100vh - 120px); /* Account for headers and spacing */
+}
+
+#main-container.fullscreen-data .x-axis text,
+#main-container.fullscreen-data .y-axis text {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+#main-container.fullscreen-data .quarter-label {
+    font-size: 12px;
+    font-weight: 700;
+}
+
+#main-container.fullscreen-data .chart-line {
+    stroke-width: 5;
+}
+
+#main-container.fullscreen-data .chart-group circle {
+    r: 6;
+}
+
+#main-container.fullscreen-data .chart-group circle:hover {
+    r: 8;
+    stroke-width: 3;
+}
+
+#main-container.fullscreen-data .chart-tooltip {
+    font-size: 14px;
+    padding: var(--spacing-md) var(--spacing-lg);
+    max-width: 300px;
+}
+
+/* Responsive chart adjustments */
+@media (max-width: 1200px) {
+    .quarter-label {
+        font-size: 9px;
+    }
+
+    .x-axis text {
+        font-size: 10px;
+    }
+
+    .y-axis text {
+        font-size: 10px;
+    }
+
+    #main-container.fullscreen-data .x-axis text,
+    #main-container.fullscreen-data .y-axis text {
+        font-size: 12px;
+    }
+
+    #main-container.fullscreen-data .quarter-label {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .quarter-label {
+        font-size: 8px;
+    }
+
+    .x-axis text {
+        font-size: 9px;
+    }
+
+    .y-axis text {
+        font-size: 9px;
+    }
+
+    .chart-line {
+        stroke-width: 1.5;
+    }
+
+    .chart-group circle {
+        r: 3;
+    }
+
+    .chart-group circle:hover {
+        r: 4;
+    }
+
+    #main-container.fullscreen-data .x-axis text,
+    #main-container.fullscreen-data .y-axis text {
+        font-size: 10px;
+    }
+
+    #main-container.fullscreen-data .quarter-label {
+        font-size: 8px;
+    }
+
+    #main-container.fullscreen-data .chart-line {
+        stroke-width: 3;
+    }
+
+    #main-container.fullscreen-data .chart-group circle {
+        r: 4;
+    }
+
+    #main-container.fullscreen-data .chart-group circle:hover {
+        r: 5;
+    }
+
+    #main-container.fullscreen-data .chart-tooltip {
+        font-size: 12px;
+        padding: var(--spacing-sm) var(--spacing-md);
+        max-width: 200px;
+    }
+}
+
+/* Animation keyframes */
+@keyframes chartFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.chart-wrapper {
+    animation: chartFadeIn 0.6s ease-out;
+}
+
+/* High contrast mode adjustments */
+@media (prefers-contrast: high) {
+    .chart-line {
+        stroke-width: 3;
+    }
+
+    .grid-lines line {
+        stroke-width: 1;
+        opacity: 1;
+    }
+
+    .chart-group circle {
+        stroke: currentColor;
+        stroke-width: 1;
+    }
+
+    .quarter-label {
+        stroke: currentColor;
+        stroke-width: 1;
+        paint-order: stroke fill;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .chart-wrapper {
+        animation: none;
+    }
+
+    .chart-group circle {
+        transition: none;
+    }
+
+    .zero-line-sheen {
+        animation: none;
+        opacity: 0;
+    }
+}

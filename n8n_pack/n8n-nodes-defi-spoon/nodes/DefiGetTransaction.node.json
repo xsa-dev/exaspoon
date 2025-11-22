@@ -1,0 +1,15 @@
+{
+  "node": {
+    "name": "DefiGetTransaction",
+    "displayName": "DeFi: Get Transaction",
+    "group": ["transform"],
+    "version": 1,
+    "description": "Get transaction details from Neo X (EVM) or any EVM-compatible chain",
+    "defaults": {
+      "name": "Get Transaction"
+    },
+    "inputs": ["main"],
+    "outputs": ["main"]
+  }
+}
+

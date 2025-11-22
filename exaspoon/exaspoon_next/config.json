@@ -1,0 +1,55 @@
+{
+  "app": {
+    "name": "exaspoon",
+    "version": "1.0.0",
+    "description": "ExaSpoon Multi-Agent System for Financial Data Management"
+  },
+  "agents": {
+    "ontology": {
+      "enabled": true,
+      "description": "Handles ontology and knowledge management"
+    },
+    "onchain": {
+      "enabled": true,
+      "description": "Manages blockchain and DeFi interactions"
+    },
+    "offchain_ingest": {
+      "enabled": true,
+      "description": "Processes off-chain transaction ingestion"
+    },
+    "categorization": {
+      "enabled": true,
+      "description": "Categorizes transactions and financial data"
+    },
+    "analytics": {
+      "enabled": true,
+      "description": "Provides financial analytics and reporting"
+    }
+  },
+  "graph": {
+    "default_agent": "ontology",
+    "persist_session": false,
+    "memory_path": "~/.spoon_ai/exaspoon",
+    "session_id": "exaspoon_cli"
+  },
+  "llm": {
+    "default_provider": "openai",
+    "temperature": 0.2,
+    "max_tokens": 4000,
+    "timeout": 30
+  },
+  "mcp": {
+    "transport": "sse",
+    "timeout": 10,
+    "retry_attempts": 3
+  },
+  "routing": {
+    "intent_confidence_threshold": 0.7,
+    "keyword_fallback_enabled": true,
+    "max_execution_log_entries": 8
+  },
+  "logging": {
+    "level": "INFO",
+    "format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  }
+}

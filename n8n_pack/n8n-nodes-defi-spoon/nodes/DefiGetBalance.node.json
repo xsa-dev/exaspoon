@@ -1,0 +1,15 @@
+{
+    "node": {
+      "name": "DefiGetBalance",
+      "displayName": "DeFi: Get Balance",
+      "group": ["transform"],
+      "version": 1,
+      "description": "Get ETH or ERC20 token balance",
+      "defaults": {
+        "name": "Get Balance"
+      },
+      "inputs": ["main"],
+      "outputs": ["main"]
+    }
+  }
+  

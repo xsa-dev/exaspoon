@@ -1,0 +1,7 @@
+openai>=1.30.0
+python-dotenv>=1.0.1
+dateparser>=1.2.0
+requests>=2.32.3
+pytest>=8.2.0
+httpx>=0.27.0
+spoon-ai-sdk @ git+https://github.com/XSpoonAi/spoon-core@main

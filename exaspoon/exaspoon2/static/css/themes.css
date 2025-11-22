@@ -1,0 +1,199 @@
+/* ============================================
+   THEME STYLES
+   ============================================ */
+
+/* Day theme colors - Clean light theme */
+body.day-theme {
+    --color-bg-primary: #ffffff;
+    --color-bg-secondary: #f8f9fa;
+    --color-text-primary: #212529;
+    --color-text-secondary: #6c757d;
+    --color-accent: #6c757d;
+    --color-grid: #e9ecef;
+    --color-line: #6c757d;
+    --color-matrix: #6c757d;
+    --color-highlight-max: #28a745;
+    --color-highlight-min: #dc3545;
+    --color-border: #dee2e6;
+}
+
+/* Night theme colors - Professional dark theme */
+body.night-theme {
+    --color-bg-primary: #1a1a1a;
+    --color-bg-secondary: #2d2d2d;
+    --color-text-primary: #e0e0e0;
+    --color-text-secondary: #b0b0b0;
+    --color-accent: #b0b0b0;
+    --color-grid: #404040;
+    --color-line: #b0b0b0;
+    --color-matrix: #b0b0b0;
+    --color-highlight-max: #5cb85c;
+    --color-highlight-min: #ff6b6b;
+    --color-border: #404040;
+}
+
+/* Theme-specific overrides */
+body.day-theme {
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+}
+
+body.night-theme {
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+}
+
+/* Default theme styling */
+body {
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+}
+
+/* Matrix canvas theme support */
+#matrix-canvas.day-theme {
+    /* Matrix colors will be handled by JavaScript */
+}
+
+#matrix-canvas.night-theme {
+    /* Matrix colors will be handled by JavaScript */
+}
+
+/* Chart theme colors */
+.chart-wrapper.day-theme {
+    --chart-line: var(--color-line);
+    --chart-grid: var(--color-grid);
+    --chart-text: var(--color-text-primary);
+    --chart-zero-line: rgba(108, 117, 125, 0.2);
+}
+
+.chart-wrapper.night-theme {
+    --chart-line: var(--color-line);
+    --chart-grid: var(--color-grid);
+    --chart-text: var(--color-text-primary);
+    --chart-zero-line: rgba(176, 176, 176, 0.3);
+}
+
+/* Data table theme colors */
+#data-table.day-theme {
+    background-color: rgba(255, 255, 255, 0.95);
+    color: var(--color-text-primary);
+    border-color: var(--color-border);
+}
+
+/* Value color coding for day theme */
+.day-theme .value-positive {
+    color: var(--color-highlight-max) !important;
+}
+
+.day-theme .value-negative {
+    color: var(--color-highlight-min) !important;
+}
+
+.day-theme .value-zero {
+    color: var(--color-text-secondary) !important;
+}
+
+#data-table.night-theme {
+    background-color: rgba(26, 26, 26, 0.8);
+    color: var(--color-text-primary);
+    border-color: var(--color-border);
+}
+
+#data-table th.day-theme {
+    background-color: var(--color-bg-secondary);
+    color: var(--color-text-primary);
+}
+
+#data-table th.night-theme {
+    background-color: var(--color-bg-secondary);
+    color: var(--color-text-primary);
+}
+
+/* Chat interface theme colors */
+.chat-container.day-theme {
+    background-color: rgba(255, 255, 255, 0.95);
+    color: var(--color-text-primary);
+    border-color: var(--color-border);
+}
+
+.chat-container.night-theme {
+    background-color: rgba(26, 26, 26, 0.9);
+    color: var(--color-text-primary);
+    border-color: var(--color-border);
+}
+
+.chat-input.day-theme {
+    background-color: var(--color-bg-secondary);
+    color: var(--color-text-primary);
+    border-color: var(--color-border);
+}
+
+.chat-input.night-theme {
+    background-color: var(--color-bg-secondary);
+    color: var(--color-text-primary);
+    border-color: var(--color-border);
+}
+
+.chat-send-button.day-theme {
+    background-color: var(--color-accent);
+    color: #ffffff;
+}
+
+.chat-send-button.night-theme {
+    background-color: var(--color-accent);
+    color: #ffffff;
+}
+
+/* Control buttons theme colors */
+.control-button.day-theme {
+    background-color: var(--color-accent);
+    color: #ffffff;
+    border-color: var(--color-accent);
+}
+
+.control-button.night-theme {
+    background-color: var(--color-accent);
+    color: #ffffff;
+    border-color: var(--color-accent);
+}
+
+/* Notification theme colors */
+.notification.day-theme {
+    background-color: var(--color-bg-secondary);
+    color: var(--color-text-primary);
+    border: 1px solid var(--color-border);
+}
+
+.notification.night-theme {
+    background-color: var(--color-bg-secondary);
+    color: var(--color-text-primary);
+    border: 1px solid var(--color-border);
+}
+
+/* Loading overlay theme colors */
+.loading-overlay.day-theme {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.loading-overlay.night-theme {
+    background-color: rgba(26, 26, 26, 0.9);
+}
+
+/* Theme transition support */
+body {
+    transition: background-color var(--transition-speed) ease,
+                color var(--transition-speed) ease;
+}
+
+.chart-wrapper,
+.chat-container,
+#data-table,
+.control-button,
+.chat-input,
+.chat-send-button,
+.notification,
+.loading-overlay {
+    transition: background-color var(--transition-speed) ease,
+                color var(--transition-speed) ease,
+                border-color var(--transition-speed) ease;
+}

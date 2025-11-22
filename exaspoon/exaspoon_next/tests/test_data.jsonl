@@ -1,0 +1,37 @@
+{"question": "summary for May 2024", "expected_agent": "analytics", "expected_keywords": ["summary", "may", "2024"]}
+{"question": "monthly summary May 2024", "expected_agent": "analytics", "expected_keywords": ["monthly", "summary", "may", "2024"]}
+{"question": "utility bill payment", "expected_agent": "categorization", "expected_keywords": ["utility", "bill", "payment"]}
+{"question": "paid for utilities", "expected_agent": "categorization", "expected_keywords": ["paid", "utilities", "services"]}
+{"question": "yesterday spent 700 rubles on coffee from Tinkoff card", "expected_agent": "offchain_ingest", "expected_keywords": ["yesterday", "card", "tinkoff", "spent", "700", "rubles", "coffee"]}
+{"question": "Sberbank card transferred 5000 rubles", "expected_agent": "offchain_ingest", "expected_keywords": ["sberbank", "card", "transferred", "5000", "rubles"]}
+{"question": "analyze wallet NEO123456789", "expected_agent": "onchain", "expected_keywords": ["analyze", "wallet", "neo"]}
+{"question": "show NEO address balance", "expected_agent": "onchain", "expected_keywords": ["show", "balance", "neo", "address"]}
+{"question": "predict NEO token price", "expected_agent": "onchain", "expected_keywords": ["predict", "price", "token", "neo"]}
+{"question": "show liquidity on Uniswap for NEO token", "expected_agent": "onchain", "expected_keywords": ["liquidity", "uniswap", "token", "neo"]}
+{"question": "add category food", "expected_agent": "ontology", "expected_keywords": ["add", "category", "food"]}
+{"question": "create account transport", "expected_agent": "ontology", "expected_keywords": ["create", "account", "transport"]}
+{"question": "structure transaction", "expected_agent": "ontology", "expected_keywords": ["structure", "transaction"]}
+{"question": "income 50000 rubles", "expected_agent": "ontology", "expected_keywords": ["income", "50000", "rubles"]}
+{"question": "expense 10000 rubles", "expected_agent": "ontology", "expected_keywords": ["expense", "10000", "rubles"]}
+{"question": "account balance", "expected_agent": "ontology", "expected_keywords": ["account", "balance"]}
+{"question": "card transaction", "expected_agent": "ontology", "expected_keywords": ["card", "transaction"]}
+{"question": "transfer between accounts", "expected_agent": "ontology", "expected_keywords": ["transfer", "between", "accounts"]}
+{"question": "bought bread for 100 rubles", "expected_agent": "ontology", "expected_keywords": ["bought", "bread", "100", "rubles"]}
+{"question": "transfer 100 NEO to address ABC123 and show balance", "expected_agent": "onchain", "expected_keywords": ["transfer", "neo", "address", "balance"]}
+{"question": "summary for June 2024", "expected_agent": "analytics", "expected_keywords": ["summary", "june", "2024"]}
+{"question": "summary for June 2024", "expected_agent": "analytics", "expected_keywords": ["summary", "june", "2024"]}
+{"question": "categorize grocery purchase", "expected_agent": "categorization", "expected_keywords": ["categorize", "purchase", "groceries"]}
+{"question": "what category is this expense", "expected_agent": "categorization", "expected_keywords": ["category", "expense"]}
+{"question": "record expense 2000 rub for taxi", "expected_agent": "offchain_ingest", "expected_keywords": ["record", "expense", "2000", "rub", "taxi"]}
+{"question": "add transaction coffee 15 usd", "expected_agent": "offchain_ingest", "expected_keywords": ["add", "transaction", "coffee", "15", "usd"]}
+{"question": "wallet analysis GAS789", "expected_agent": "onchain", "expected_keywords": ["wallet", "analysis", "gas"]}
+{"question": "price prediction GAS token", "expected_agent": "onchain", "expected_keywords": ["price", "prediction", "gas", "token"]}
+{"question": "defi liquidity pool NEO", "expected_agent": "onchain", "expected_keywords": ["defi", "liquidity", "pool", "neo"]}
+{"question": "new category salary", "expected_agent": "ontology", "expected_keywords": ["new", "category", "salary"]}
+{"question": "create account savings", "expected_agent": "ontology", "expected_keywords": ["create", "account", "savings"]}
+{"question": "financial data structure", "expected_agent": "ontology", "expected_keywords": ["financial", "data", "structure"]}
+{"question": "income 3000 dollars", "expected_agent": "ontology", "expected_keywords": ["income", "3000", "dollars"]}
+{"question": "expense 500 euros", "expected_agent": "ontology", "expected_keywords": ["expense", "500", "euros"]}
+{"question": "account balance", "expected_agent": "ontology", "expected_keywords": ["account", "balance"]}
+{"question": "card transaction", "expected_agent": "ontology", "expected_keywords": ["card", "transaction"]}
+{"question": "transfer accounts", "expected_agent": "ontology", "expected_keywords": ["transfer", "accounts"]}

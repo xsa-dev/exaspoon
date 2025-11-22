@@ -1,0 +1,16 @@
+{
+  "name": "slidev-theme-neofallout",
+  "version": "1.0.0",
+  "description": "Fallout × Neo blockchain theme for Slidev with radioactive neon, rust metal textures and post-apocalyptic UI.",
+  "keywords": [
+    "slidev",
+    "theme",
+    "neo",
+    "fallout",
+    "presentation",
+    "post-apocalypse"
+  ],
+  "author": "You",
+  "license": "MIT",
+  "main": "index.js"
+}

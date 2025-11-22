@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="Interactive data dashboard with visualization and AI chat"
+        />
+        <title>Data Dashboard | Interactive Panel</title>
+
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600&display=swap"
+            rel="stylesheet"
+        />
+
+        <!-- Modular CSS Files -->
+        <link rel="stylesheet" href="/static/css/base.css" />
+        <link rel="stylesheet" href="/static/css/themes.css" />
+        <link rel="stylesheet" href="/static/css/layout.css" />
+        <link rel="stylesheet" href="/static/css/chart.css" />
+        <link rel="stylesheet" href="/static/css/chat.css" />
+
+        <!-- External Libraries -->
+        <script src="https://d3js.org/d3.v7.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+            id="highlight-theme"
+        />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+        <!-- Session ID will be injected here -->
+
+        <!-- Modular JavaScript Files -->
+        <script src="/static/js/utils.js"></script>
+        <script src="/static/js/matrix.js"></script>
+        <script src="/static/js/chart.js"></script>
+        <script src="/static/js/chat.js"></script>
+        <script src="/static/js/ui.js"></script>
+        <script src="/static/js/state.js"></script>
+        <script src="/static/js/realtime_client.js"></script>
+        <script src="/static/js/app.js" defer></script>
+    </head>
+    <body class="day-theme">
+        <!-- Matrix Background Canvas -->
+        <canvas
+            id="matrix-canvas"
+            role="presentation"
+            aria-hidden="true"
+        ></canvas>
+
+        <!-- Real-time Connection Status Indicator -->
+        <div
+            id="realtime-status"
+            class="realtime-status"
+            title="Connecting to real-time updates..."
+        >
+            🔄 Connecting...
+        </div>
+
+        <!-- Current Date Display -->
+        <div id="current-date" class="current-date" title="Current date">
+            <!-- Date will be set by JavaScript -->
+        </div>
+
+        <!-- Main Application Container -->
+        <main id="main-container" role="main" class="main-container">
+            <!-- Left Column: Chart and Table -->
+            <div class="left-column">
+                <!-- Chart Section -->
+                <section
+                    id="chart-container"
+                    role="region"
+                    aria-label="Data visualization chart"
+                >
+                    <div class="chart-header">
+                        <h3 class="chart-title">Financial Chart</h3>
+                        <button
+                            class="chart-fullscreen-btn"
+                            onclick="window.dashboardApp?.uiManager?.toggleChartSize()"
+                            title="Toggle fullscreen"
+                            aria-label="Toggle fullscreen"
+                        >
+                            ⛶
+                        </button>
+                    </div>
+                    <div
+                        class="chart-wrapper"
+                        role="img"
+                        aria-label="Financial data chart showing monthly values"
+                    >
+                        <!-- Chart will be rendered here by D3.js -->
+                    </div>
+                </section>
+
+                <!-- Data Table Section -->
+                <section
+                    id="table-container"
+                    role="region"
+                    aria-label="Financial data table"
+                    class="table-container"
+                >
+                    <div class="table-header">
+                        <h3 class="table-title">Financial Data</h3>
+                        <button
+                            class="table-fullscreen-btn"
+                            onclick="window.dashboardApp?.uiManager?.toggleTableSize()"
+                            title="Toggle fullscreen"
+                            aria-label="Toggle fullscreen"
+                        >
+                            ⛶
+                        </button>
+                    </div>
+                    <table id="data-table" class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Description</th>
+                                <th>Category</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body">
+                            <!-- Data will be populated here -->
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+
+            <!-- Right Column: Chat -->
+            <div class="chat-wrapper">
+                <!-- Chat Container -->
+                <section
+                    id="chat-response"
+                    role="region"
+                    aria-label="AI response"
+                    class="chat-container"
+                >
+                    <!-- Chat Header -->
+                    <div class="chat-header">
+                        <h2 class="chat-title">AI Assistant</h2>
+                        <button
+                            class="fullscreen-btn"
+                            onclick="toggleFullscreen('chat-response')"
+                            title="Toggle fullscreen"
+                            aria-label="Toggle fullscreen"
+                        >
+                            ⛶
+                        </button>
+                    </div>
+
+                    <!-- Chat Messages Area -->
+                    <div
+                        id="response-textarea"
+                        class="chat-messages"
+                        contenteditable="false"
+                        role="log"
+                        aria-label="Chat messages"
+                    >
+                        <!-- AI responses will appear here -->
+                    </div>
+
+                    <!-- Chat Input Area -->
+                    <div class="chat-input-area">
+                        <textarea
+                            id="input-field"
+                            class="chat-input"
+                            placeholder="Ask about your financial data..."
+                            rows="1"
+                            aria-label="Type your message"
+                        ></textarea>
+                        <button
+                            id="send-button"
+                            class="chat-send-button"
+                            aria-label="Send message"
+                        >
+                            Send
+                        </button>
+                    </div>
+
+                    <!-- Loading Indicator -->
+                    <div
+                        id="loading-indicator"
+                        class="chat-loading"
+                        style="display: none"
+                        aria-live="polite"
+                    >
+                        <div class="loading-spinner"></div>
+                        <span>Thinking...</span>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Slide-out Menu Gear Button -->
+            <button
+                class="menu-gear-button"
+                onclick="window.dashboardApp?.uiManager?.toggleMenu()"
+                aria-label="Menu"
+                aria-expanded="false"
+                aria-controls="slide-menu"
+            >
+                <span class="gear-icon">⚙️</span>
+            </button>
+
+            <!-- Backdrop Overlay -->
+            <div
+                class="menu-backdrop"
+                id="menu-backdrop"
+                onclick="window.dashboardApp?.uiManager?.closeMenu()"
+            ></div>
+
+            <!-- Slide-out Menu -->
+            <nav class="slide-menu" id="slide-menu" role="menu">
+                <div class="menu-header">
+                    <h3 class="menu-title">Menu</h3>
+                    <button
+                        class="menu-close-button"
+                        onclick="window.dashboardApp?.uiManager?.closeMenu()"
+                        aria-label="Close menu"
+                    >
+                        ✕
+                    </button>
+                </div>
+                <div class="menu-content">
+                    <div
+                        class="menu-item"
+                        onclick="window.dashboardApp?.refreshDataRealtime()"
+                        role="menuitem"
+                    >
+                        <span class="menu-icon">🔄</span>
+                        <span class="menu-text">Refresh Data</span>
+                        <span class="menu-badge realtime-enabled">Live</span>
+                    </div>
+                    <div
+                        class="menu-item"
+                        onclick="window.dashboardApp?.uiManager?.showConnectionDetails()"
+                        role="menuitem"
+                    >
+                        <span class="menu-icon" id="menu-connection-icon"
+                            >🔄</span
+                        >
+                        <span class="menu-text">Connection</span>
+                        <span
+                            class="menu-badge menu-status-indicator"
+                            id="menu-connection-status"
+                            >Connecting...</span
+                        >
+                    </div>
+                    <div
+                        class="menu-item"
+                        onclick="window.dashboardApp?.toggleTheme()"
+                        role="menuitem"
+                    >
+                        <span class="menu-icon">🌓</span>
+                        <span class="menu-text">Toggle Theme</span>
+                    </div>
+                    <div
+                        class="menu-item"
+                        onclick="window.dashboardApp?.uiManager?.toggleLayout()"
+                        role="menuitem"
+                    >
+                        <span class="menu-icon">📐</span>
+                        <span class="menu-text">Toggle Layout</span>
+                    </div>
+                    <div class="menu-separator"></div>
+                    <div
+                        class="menu-item"
+                        onclick="window.dashboardApp?.uiManager?.resetChart()"
+                        role="menuitem"
+                    >
+                        <span class="menu-icon">📊</span>
+                        <span class="menu-text">Reset Chart</span>
+                    </div>
+                    <div
+                        class="menu-item"
+                        onclick="window.dashboardApp?.uiManager?.exportChart()"
+                        role="menuitem"
+                    >
+                        <span class="menu-icon">💾</span>
+                        <span class="menu-text">Export Chart</span>
+                    </div>
+                    <div class="menu-separator"></div>
+                    <div
+                        class="menu-item"
+                        onclick="window.dashboardApp?.uiManager?.showSettings()"
+                        role="menuitem"
+                    >
+                        <span class="menu-icon">⚙️</span>
+                        <span class="menu-text">Settings</span>
+                    </div>
+                    <div
+                        class="menu-item"
+                        onclick="window.dashboardApp?.uiManager?.showAbout()"
+                        role="menuitem"
+                    >
+                        <span class="menu-icon">ℹ️</span>
+                        <span class="menu-text">About</span>
+                    </div>
+                    <div class="menu-separator"></div>
+                    <div
+                        class="menu-item"
+                        onclick="window.dashboardApp?.chatInterface?.startNewConversation()"
+                        role="menuitem"
+                    >
+                        <span class="menu-icon">💬</span>
+                        <span class="menu-text">New Chat</span>
+                    </div>
+                    <div
+                        class="menu-item"
+                        onclick="window.dashboardApp?.uiManager?.clearChatHistory()"
+                        role="menuitem"
+                    >
+                        <span class="menu-icon">🗑️</span>
+                        <span class="menu-text">Clear Chat History</span>
+                    </div>
+                    <div
+                        class="menu-item"
+                        onclick="window.dashboardApp?.uiManager?.exportChatHistory()"
+                        role="menuitem"
+                    >
+                        <span class="menu-icon">📥</span>
+                        <span class="menu-text">Export Chat</span>
+                    </div>
+                </div>
+            </nav>
+        </main>
+
+        <!-- Fallback loading message for screen readers -->
+        <noscript>
+            <div
+                style="
+                    position: fixed;
+                    top: 20px;
+                    left: 20px;
+                    background: #000;
+                    color: #fff;
+                    padding: 10px;
+                    border-radius: 4px;
+                "
+            >
+                JavaScript is required for this interactive dashboard. Please
+                enable JavaScript to use the application.
+            </div>
+        </noscript>
+    </body>
+</html>

@@ -1,0 +1,69 @@
+:root {
+  /* Fallout × Neo Neon Palette */
+  --color-accent: #3EFF64;
+  --color-accent-2: #00C853;
+  --color-neon-1: #7CFF4F;
+  --color-neon-2: #27A15E;
+
+  /* Text */
+  --color-text-main: #F2F2D8;
+  --color-text-muted: #C9C9A8;
+
+  /* Backgrounds */
+  --color-bg-dark: #0A1A0F;
+  --color-bg-surface: #2A3A2F;
+  --color-bg-paper: #E8D29B;
+
+  /* Rust / Fallout */
+  --color-rust1: #6B3E1E;
+  --color-rust2: #5A4A34;
+  --color-dust: #C8A45A;
+
+  --slidev-code-font-size: 1rem;
+  --slidev-code-background: #1a1f17;
+}
+
+/* Global Reset */
+html, body {
+  background: var(--color-bg-dark) !important;
+  color: var(--color-text-main) !important;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Headings */
+h1, h2, h3 {
+  color: var(--color-accent);
+  text-shadow: 0 0 12px var(--color-neon-2);
+}
+
+/* Paragraph */
+p {
+  color: var(--color-text-main);
+}
+
+/* Links */
+a {
+  color: var(--color-accent-2);
+  text-shadow: 0 0 6px var(--color-neon-1);
+}
+
+/* Code blocks */
+.shiki {
+  background: #111 !important;
+  border: 1px solid var(--color-rust1);
+  box-shadow: 0 0 12px rgba(46, 255, 120, 0.2);
+}
+
+/* Lists */
+ul > li::marker {
+  color: var(--color-accent);
+}
+
+/* Fallout-style box */
+.fallout-box {
+  padding: 20px;
+  border: 2px solid var(--color-accent);
+  background: rgba(10, 26, 15, 0.6);
+  box-shadow: inset 0 0 20px var(--color-neon-2);
+  border-radius: 6px;
+}

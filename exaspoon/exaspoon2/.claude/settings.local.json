@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python:*)",
+      "Bash(claude mcp add:*)",
+      "Bash(/help)",
+      "Bash(pip install:*)",
+      "Bash(=0.25.0)",
+      "Bash(curl:*)",
+      "Bash(source:*)",
+      "Bash(lsof:*)",
+      "Bash(python3:*)",
+      "Bash(uv run:*)",
+      "Bash(make:*)",
+      "Bash(pkill:*)",
+      "Bash(xargs kill:*)",
+      "Bash(rm:*)",
+      "Bash(for:*)",
+      "Bash(do echo:*)",
+      "Bash(done)",
+      "Bash(chmod:*)",
+      "Bash(kill:*)",
+      "Bash(uvicorn:*)",
+      "Bash(open:*)",
+      "Bash(node -c:*)",
+      "Bash(grep:*)",
+      "Bash(find:*)",
+      "Bash(docker-compose config:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "node": {
+    "name": "DefiGetWalletTransactions",
+    "displayName": "DeFi: Get Wallet Transactions",
+    "group": ["transform"],
+    "version": 1,
+    "description": "Get all transactions for a wallet address",
+    "defaults": {
+      "name": "Get Wallet Transactions"
+    },
+    "inputs": ["main"],
+    "outputs": ["main"]
+  }
+}
+

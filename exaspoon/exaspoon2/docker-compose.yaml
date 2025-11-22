@@ -1,0 +1,111 @@
+services:
+  # MCP Gateway Service
+  mcp-gateway:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: exaspoon-mcp-gateway
+    command: uv run src/exaspoon_mcp_gateway.py
+    env_file: .env.docker
+    environment:
+      - PYTHONUNBUFFERED=1
+      - REDIS_HOST=${REDIS_HOST:-redis}
+      - REDIS_PORT=${REDIS_PORT:-6379}
+    volumes:
+      - ./spoon-core:/app/spoon-core
+      - ./src:/app/src
+    networks:
+      - exaspoon-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:${MCP_GATEWAY_PORT:-8766}/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    depends_on:
+      - redis
+
+  # FastAPI Application Service
+  fastapi-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: exaspoon-fastapi
+    command: uv run src/app.py
+    ports:
+      - "${FASTAPI_PORT:-5556}:${FASTAPI_PORT:-5556}"
+    env_file: .env.docker
+    volumes:
+      - ./static:/app/static
+      - ./templates:/app/templates
+      - ./src:/app/src
+      - ./spoon-core:/app/spoon-core
+    networks:
+      - exaspoon-network
+    restart: unless-stopped
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "curl",
+          "-f",
+          "http://localhost:${FASTAPI_PORT:-5556}/api/status",
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    depends_on:
+      - mcp-gateway
+      - redis
+
+  # Redis Service (for caching and session management)
+  redis:
+    image: redis:7-alpine
+    container_name: exaspoon-redis
+    ports:
+      - "${REDIS_PORT:-6379}:${REDIS_PORT:-6379}"
+    volumes:
+      - redis_data:/data
+    networks:
+      - exaspoon-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Optional: PostgreSQL Database (if you want local development DB)
+  # Uncomment this section if you prefer local DB over Supabase
+  # postgres:
+  #   image: postgres:15-alpine
+  #   container_name: exaspoon-postgres
+  #   environment:
+  #     - POSTGRES_DB=${POSTGRES_DB:-exaspoon}
+  #     - POSTGRES_USER=${POSTGRES_USER:-postgres}
+  #     - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-postgres}
+  #   ports:
+  #     - "5432:5432"
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #   networks:
+  #     - exaspoon-network
+  #   restart: unless-stopped
+  #   healthcheck:
+  #     test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres}"]
+  #     interval: 30s
+  #     timeout: 10s
+  #     retries: 3
+
+networks:
+  exaspoon-network:
+    driver: bridge
+    name: exaspoon-network
+
+volumes:
+  redis_data:
+    driver: local
+  # postgres_data:
+  #   driver: local

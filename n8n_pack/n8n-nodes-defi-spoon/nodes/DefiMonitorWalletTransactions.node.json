@@ -1,0 +1,15 @@
+{
+  "node": {
+    "name": "DefiMonitorWalletTransactions",
+    "displayName": "DeFi: Monitor Wallet Transactions",
+    "group": ["trigger"],
+    "version": 1,
+    "description": "Monitor wallet for new transactions (webhook/trigger)",
+    "defaults": {
+      "name": "Monitor Wallet"
+    },
+    "inputs": [],
+    "outputs": ["main"]
+  }
+}
+

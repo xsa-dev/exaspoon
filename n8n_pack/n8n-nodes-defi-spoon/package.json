@@ -1,0 +1,37 @@
+{
+  "name": "n8n-nodes-defi-spoon",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "check": "node check-nodes.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "web3": "^4.16.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "n8n-workflow": "^1.118.1",
+    "typescript": "^5.9.3"
+  },
+  "n8n": {
+    "nodes": [
+      "dist/nodes/DefiGetBalance.node.js",
+      "dist/nodes/PythonScript.node.js",
+      "dist/nodes/DefiGetTransaction.node.js",
+      "dist/nodes/DefiGetWalletTransactions.node.js",
+      "dist/nodes/DefiMonitorWalletTransactions.node.js"
+    ],
+    "credentials": [
+      "dist/credentials/RpcApi.credentials.js",
+      "dist/credentials/PythonEnv.credentials.js"
+    ]
+  }
+}
